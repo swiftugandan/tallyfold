@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tallyfold: memory your agents keep, in a git repo you own</title>
+  <meta name="description" content="Tallyfold gives coding agents memory that lasts across sessions, projects and machines. It lives in a private git repository you own, as plain Markdown you can read and edit.">
+  <meta property="og:title" content="Tallyfold: tell your agent once">
+  <meta property="og:description" content="Memory your coding agents keep across sessions, projects and machines, in a private git repo you own.">
+  <meta property="og:image" content="https://swiftugandan.github.io/tallyfold/og.png">
+  <meta property="og:url" content="https://swiftugandan.github.io/tallyfold/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#1F4A37">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="top">
+    <a class="wordmark" href="./" aria-label="Tallyfold home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><use href="#mark"/></svg>
+      Tallyfold
+    </a>
+    <nav aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#install">Install</a>
+      <a href="https://github.com/swiftugandan/tallyfold">GitHub</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">Tell your agent once.</h1>
+      <p class="lede">Tallyfold gives coding agents memory that lasts across sessions, projects and machines. It lives in a private git repository you own, as plain Markdown you can read and edit.</p>
+      <p class="actions">
+        <a class="button" href="#install">Install for Claude Code</a>
+        <a class="button quiet" href="https://github.com/swiftugandan/tallyfold">Read the source</a>
+      </p>
+
+      <figure class="tally">
+        <svg class="stick" viewBox="0 0 1000 200" role="img" aria-labelledby="stick-title stick-desc">
+          <title id="stick-title">A split tally stick</title>
+          <desc id="stick-desc">Two halves of a hazel stick with matching notches. The halves part, a new notch is cut through both at once, and they close again.</desc>
+          <defs>
+            <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="var(--hazel-light)"/>
+              <stop offset="1" stop-color="var(--hazel)"/>
+            </linearGradient>
+            <symbol id="notch" viewBox="0 0 20 18" preserveAspectRatio="none"><path d="M0 0 L10 18 L20 0 Z"/></symbol>
+          </defs>
+
+          <g class="half stock">
+            <path class="wood" d="M28 30 Q20 30 20 42 L20 92 Q20 104 32 104 L968 104 Q980 104 980 92 L980 42 Q980 30 968 30 Z"/>
+            <path class="grain" d="M60 48 C300 44 520 52 960 46 M150 66 C380 70 640 62 950 68 M40 86 C260 84 560 88 900 85"/>
+            <g class="notches" transform="translate(0 104) scale(1 -1)">
+              <use href="#notch" x="226" width="12" height="24"/>
+              <use href="#notch" x="256" width="8" height="18"/>
+              <use href="#notch" x="296" width="20" height="33"/>
+              <use href="#notch" x="350" width="8" height="18"/>
+              <use href="#notch" x="378" width="8" height="18"/>
+              <use href="#notch" x="440" width="14" height="27"/>
+              <use href="#notch" x="470" width="8" height="18"/>
+              <use href="#notch" x="552" width="20" height="33"/>
+              <use href="#notch" x="604" width="8" height="18"/>
+              <use href="#notch" x="636" width="12" height="24"/>
+              <use href="#notch" x="716" width="8" height="18"/>
+              <use href="#notch" x="744" width="14" height="27"/>
+              <g class="new"><use href="#notch" x="844" width="18" height="30"/></g>
+            </g>
+            <text class="label" x="20" y="20">on your machine</text>
+          </g>
+
+          <g class="half foil">
+            <path class="wood" d="M152 106 Q140 106 140 118 L140 168 Q140 180 152 180 L968 180 Q980 180 980 168 L980 118 Q980 106 968 106 Z"/>
+            <path class="grain" d="M170 124 C420 128 700 120 960 125 M180 144 C460 141 720 148 950 144 M200 164 C480 162 700 166 940 163"/>
+            <g class="notches" transform="translate(0 106)">
+              <use href="#notch" x="226" width="12" height="24"/>
+              <use href="#notch" x="256" width="8" height="18"/>
+              <use href="#notch" x="296" width="20" height="33"/>
+              <use href="#notch" x="350" width="8" height="18"/>
+              <use href="#notch" x="378" width="8" height="18"/>
+              <use href="#notch" x="440" width="14" height="27"/>
+              <use href="#notch" x="470" width="8" height="18"/>
+              <use href="#notch" x="552" width="20" height="33"/>
+              <use href="#notch" x="604" width="8" height="18"/>
+              <use href="#notch" x="636" width="12" height="24"/>
+              <use href="#notch" x="716" width="8" height="18"/>
+              <use href="#notch" x="744" width="14" height="27"/>
+              <g class="new"><use href="#notch" x="844" width="18" height="30"/></g>
+            </g>
+            <text class="label" x="128" y="150" text-anchor="end">in your repo</text>
+          </g>
+        </svg>
+        <p class="entry" aria-hidden="true"><span>+</span> Prefers a table when comparing options, with the recommended one first</p>
+        <figcaption>The English Exchequer kept accounts on hazel tally sticks. A stick was notched, then split along its length, and each party kept one half. The notches matched when the halves were put back together. Tallyfold keeps memory the same way: each fact your agent learns is cut into the copy on your machine and the copy in your repository at once.</figcaption>
+      </figure>
+    </section>
+
+    <section id="how" class="block" aria-labelledby="how-title">
+      <h2 id="how-title">How a fact travels</h2>
+      <ol class="steps">
+        <li>
+          <h3>You tell your agent something worth keeping</h3>
+          <p>A correction to how it works, a preference, who owns a service, why a decision went the way it did.</p>
+        </li>
+        <li>
+          <h3>It writes one line to your memory</h3>
+          <p>Tallyfold adds the line to a Markdown file, stamps the date and the client that wrote it, commits it and pushes it to your repository.</p>
+          <pre class="file" aria-label="MEMORY.md"><code><span class="path">MEMORY.md</span>
+# Memory
+
+- Prefers a table when comparing options, with the recommended one first [added: 2026-10-07; by: claude-code]
+- Never polls CI in the foreground; reports the run URL and stops [added: 2026-10-07; by: claude-code]
+
+## Index
+
+- [[people]]
+- [[projects/payments]]</code></pre>
+        </li>
+        <li>
+          <h3>The next session already knows</h3>
+          <p>When a session starts, Tallyfold pulls the latest copy and puts <code>MEMORY.md</code> in front of the agent. That works in any project and on any machine where the plugin is installed. Topic files load when the agent needs them.</p>
+        </li>
+        <li>
+          <h3>When the fact changes, the line changes</h3>
+          <p>The agent replaces or removes the old entry instead of adding a contradiction. Git keeps every earlier version, so nothing is lost and any change can be undone.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="block split" aria-labelledby="keeps-title">
+      <h2 id="keeps-title">What your agent keeps</h2>
+      <div class="lists">
+        <div>
+          <h3>Saved</h3>
+          <ul>
+            <li>Corrections to how it works</li>
+            <li>Your preferences in writing, tools and code</li>
+            <li>People, teams and who owns what</li>
+            <li>Facts about your projects that outlast one task</li>
+            <li>Decisions and the reasons behind them</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Skipped</h3>
+          <ul>
+            <li>Anything the code or docs already say</li>
+            <li>Details that only matter for the task at hand</li>
+            <li>Guesses it hasn't confirmed</li>
+            <li>Passwords, tokens and keys, which Tallyfold refuses to write</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="own-title">
+      <h2 id="own-title">Plain files you own</h2>
+      <dl class="facts">
+        <div>
+          <dt>Your repository</dt>
+          <dd>Memory lives in a private git repo on your own account. Tallyfold runs on your machine and has no server of its own.</dd>
+        </div>
+        <div>
+          <dt>Readable and editable</dt>
+          <dd>Each fact is one Markdown bullet. Read it on GitHub, fix a line by hand, or delete a file you no longer want.</dd>
+        </div>
+        <div>
+          <dt>Every change is a commit</dt>
+          <dd>You can see when a fact arrived, which client wrote it, and what it said before it changed.</dd>
+        </div>
+        <div>
+          <dt>Small at startup</dt>
+          <dd><code>MEMORY.md</code> stays under 4,000 characters, so sessions start with what matters and look up the rest.</dd>
+        </div>
+        <div>
+          <dt>Open formats</dt>
+          <dd>Files follow the Agent Memory Repo format. The plugin follows the Agent Plugins 1.0 specification, so any agent that reads those formats can use your memory.</dd>
+        </div>
+        <div>
+          <dt>Safe with concurrent sessions</dt>
+          <dd>Two sessions writing at once both land. If they change the same line, the later write is undone and the agent is shown both versions to merge.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section id="install" class="block" aria-labelledby="install-title">
+      <h2 id="install-title">Install</h2>
+      <p>Tallyfold runs on macOS and Linux and needs git and curl. Claude Code is the tested client.</p>
+
+      <h3>1. Add the plugin to Claude Code</h3>
+      <div class="cmd">
+        <pre><code>claude plugin marketplace add swiftugandan/tallyfold
+claude plugin install tallyfold@tallyfold</code></pre>
+        <button type="button" class="copy" data-copy="claude plugin marketplace add swiftugandan/tallyfold&#10;claude plugin install tallyfold@tallyfold">Copy</button>
+      </div>
+
+      <h3>2. Make an empty private repository for your memory</h3>
+      <div class="cmd">
+        <pre><code>gh repo create agent-memory --private</code></pre>
+        <button type="button" class="copy" data-copy="gh repo create agent-memory --private">Copy</button>
+      </div>
+
+      <h3>3. Ask your agent to set it up</h3>
+      <div class="cmd prompt">
+        <pre><code>Set up Tallyfold with git@github.com:you/agent-memory.git</code></pre>
+        <button type="button" class="copy" data-copy="Set up Tallyfold with git@github.com:you/agent-memory.git">Copy</button>
+      </div>
+      <p class="note">Tallyfold reaches the repository with your machine's own git credentials. To try it without a remote, ask your agent to set up Tallyfold locally; you can add a repository later.</p>
+
+      <h3>Other agent clients</h3>
+      <p>The <code>plugin</code> folder is an Agent Plugins 1.0 package, which VS Code, Cursor, GitHub Copilot and Codex can install from <a href="https://github.com/swiftugandan/tallyfold">the repository</a>. These clients haven't been tested yet. Their agents load memory through the Tallyfold skill when a task starts, because the specification has no session-start hook.</p>
+    </section>
+
+    <section class="block" aria-labelledby="next-title">
+      <h2 id="next-title">Next: memory you share</h2>
+      <p>This release keeps personal memory. The same design extends to two shared kinds, and the code already has the places they plug in.</p>
+      <dl class="facts two">
+        <div>
+          <dt>Team memory</dt>
+          <dd>A repository your team reads, where your agents propose facts on a branch and they reach everyone after checks and review.</dd>
+        </div>
+        <div>
+          <dt>Swarm memory</dt>
+          <dd>A branch shared by agents working one problem in parallel, so each builds on what the others have found.</dd>
+        </div>
+      </dl>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#mark"/></svg> Tallyfold is open source under the MIT licence.</p>
+    <p><a href="https://github.com/swiftugandan/tallyfold">Source and issues on GitHub</a></p>
+  </footer>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="mark" viewBox="0 0 32 32">
+      <rect x="3" y="8" width="26" height="7" rx="2" fill="var(--hazel)"/>
+      <rect x="7" y="17" width="22" height="7" rx="2" fill="var(--hazel)"/>
+      <path d="M11 15 L13 11 L15 15 Z M19 15 L21 12 L23 15 Z M11 17 L13 21 L15 17 Z M19 17 L21 20 L23 17 Z" fill="var(--heartwood)"/>
+    </symbol>
+  </svg>
+  <script src="copy.js" defer></script>
+</body>
+</html>

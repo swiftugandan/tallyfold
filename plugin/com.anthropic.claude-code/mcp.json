@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "tallyfold": {
+      "type": "stdio",
+      "command": "${CLAUDE_PLUGIN_ROOT}/bin/tallyfold",
+      "args": ["mcp"],
+      "env": {
+        "PLUGIN_ROOT": "${CLAUDE_PLUGIN_ROOT}",
+        "PLUGIN_DATA": "${CLAUDE_PLUGIN_DATA}"
+      }
+    }
+  }
+}

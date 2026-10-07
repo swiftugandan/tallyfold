@@ -1,0 +1,78 @@
+#!/bin/sh
+# Runs the tallyfold binary for this machine.
+#
+# The first run downloads the binary from the GitHub release named in ./release
+# and checks it against the SHA-256 recorded there, so the plugin's own files
+# decide exactly which binary runs. Binaries are kept in the plugin data
+# directory, which clients preserve across plugin updates.
+set -eu
+
+here=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
+
+# Agent Plugins clients set PLUGIN_DATA; Claude Code hooks see CLAUDE_PLUGIN_DATA.
+data=${PLUGIN_DATA:-${CLAUDE_PLUGIN_DATA:-}}
+if [ -z "$data" ]; then
+	echo "tallyfold: PLUGIN_DATA is not set; run tallyfold from an agent client" >&2
+	exit 1
+fi
+export PLUGIN_DATA="$data"
+
+# A binary built from source with `make dev` takes precedence.
+if [ -x "$here/dev/tallyfold" ]; then
+	exec "$here/dev/tallyfold" "$@"
+fi
+
+version=$(sed -n 's/^version //p' "$here/release")
+case $(uname -s) in
+Darwin) os=darwin ;;
+Linux) os=linux ;;
+*)
+	echo "tallyfold: $(uname -s) is not supported yet" >&2
+	exit 1
+	;;
+esac
+case $(uname -m) in
+x86_64 | amd64) arch=amd64 ;;
+arm64 | aarch64) arch=arm64 ;;
+*)
+	echo "tallyfold: $(uname -m) processors are not supported yet" >&2
+	exit 1
+	;;
+esac
+
+asset="tallyfold_${version}_${os}_${arch}"
+bin="$data/bin/$asset"
+
+if [ ! -x "$bin" ]; then
+	want=$(awk -v asset="$asset" '$1 == "sha256" && $3 == asset { print $2 }' "$here/release")
+	if [ -z "$want" ]; then
+		echo "tallyfold: the plugin has no checksum for $asset" >&2
+		exit 1
+	fi
+	mkdir -p "$data/bin"
+	tmp="$bin.download.$$"
+	trap 'rm -f "$tmp"' EXIT
+	url="https://github.com/swiftugandan/tallyfold/releases/download/v$version/$asset"
+	if ! curl -fsSL --retry 2 --connect-timeout 10 -o "$tmp" "$url"; then
+		echo "tallyfold: could not download $url" >&2
+		exit 1
+	fi
+	if command -v sha256sum >/dev/null 2>&1; then
+		got=$(sha256sum "$tmp" | cut -d ' ' -f 1)
+	else
+		got=$(shasum -a 256 "$tmp" | cut -d ' ' -f 1)
+	fi
+	if [ "$got" != "$want" ]; then
+		echo "tallyfold: $asset does not match the checksum in the plugin; refusing to run it" >&2
+		exit 1
+	fi
+	chmod 755 "$tmp"
+	mv -f "$tmp" "$bin"
+	trap - EXIT
+	# Remove binaries from earlier versions.
+	for old in "$data"/bin/tallyfold_*; do
+		case $old in "$bin" | *.download.*) ;; *) rm -f "$old" ;; esac
+	done
+fi
+
+exec "$bin" "$@"

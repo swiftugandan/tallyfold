@@ -1,0 +1,14 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "tallyfold",
+  "version": "0.1.0",
+  "description": "Memory your agents keep across sessions and projects, in a private git repo you own.",
+  "author": {
+    "name": "swiftugandan",
+    "url": "https://github.com/swiftugandan"
+  },
+  "homepage": "https://swiftugandan.github.io/tallyfold/",
+  "repository": "https://github.com/swiftugandan/tallyfold",
+  "license": "MIT",
+  "keywords": ["memory", "git", "mcp", "agent-memory-repo"]
+}
